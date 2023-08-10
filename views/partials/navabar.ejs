@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        <%= title %>
+
+    </title>
+    <link type="image/png" sizes="32*32" href="/images/favicon.png" />
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/bootstrap-icons-1.10.3/bootstrap-icons.css" />
+
+    <link rel="stylesheet" href="/css/tab.css" />
+</head>
+
+<body style="direction: rtl;" class="">
+    <nav class="sticky-top navbar  navbar-expand-lg navbar-dark bg-dark shadow w-100">
+        <div class="container-fluid">
+            <a href="/" class="">
+                <img src="/images/sat3-logo.png"  alt="" width="90" height="90" class="d-inline-block align-text-top" />
+            </a>
+           <div class="d-flex flex-column ">
+               <span class="navbar-brand">منظومه التمام</span> 
+               <span class="navbar-brand">تحريرا في &ThinSpace; &ThinSpace; / 6 / 2023</span>
+            </div>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              
+                   
+              
+                <div class="d-flex me-auto" role="search">
+ <a class="navbar-brand mx-5 d-flex align-items-center font-monospace" href="/"><%= user.name %> <i class="fw-bold bi bi-person-circle mx-2" ></i></a>
+                   
+                    <% if (user.role === "admin") { %>
+                        
+                        <a class="btn btn-primary mx-2" href="/dashboard">لوحه التحكم</i></a>
+                        <% } else { %>
+                            
+                        <a class="btn btn-primary mx-2" href="/dashboard">لوحه التحكم</i></a>
+
+                            <% } %>
+                                <a class="btn btn-primary mx-2" href="/logout">تسجيل الخروج</i></a>
+                                
+
+
+                </div>
+            </div>
+        </div>
+    </nav>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ar">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+
+    <link rel="stylesheet" href="/css/tab.css" />
+    <link rel="stylesheet" href="/bootstrap-icons-1.10.3/bootstrap-icons.css" />
+  </head>
+
+  <body
+    style="direction: rtl; background-color: #3333"
+    class="d-flex flex-column min-vh-100"
+  >
+    <div>
+      <video
+        style="width: 100%; height: 100%"
+        src="/videos/login.mp4"
+        autoplay
+        muted
+        loop
+      ></video>
+    </div>
+    <div class="container text-center">
+      <div
+        style="background-color: #fffdff31"
+        class="col-4 position-absolute top-50 start-50 translate-middle rounded shadow-lg p-5"
+      >
+        <% for( let index = 0; index < massages.length; index++ ) { %>
+        <div class="alert alert-danger fade show">
+          <strong><%= massages[index] %></strong>
+          <button
+            class="btn-close"
+            data-bs-dismiss="alert"
+            aria-label="Close"
+          ></button>
+        </div>
+        <% } %>
+        <div class="mb-5">
+          <h1 class="text-center text-light">تسجيل الدخول</h1>
+        </div>
+        <form action="/signin" method="post" class="was-validated">
+          <div>
+            <div class="form-floating mb-3">
+              <input
+                required
+                type="text"
+                class="form-control border shadow text-light"
+                id="floatingInput"
+                name="name"
+                placeholder="أدخل أسم المستخدم"
+                style="background-color: #fffdff31"
+              />
+              <label for="floatingInput">تسجيل دخول فرع</label>
+            </div>
+            <div class="form-floating mb-5">
+              <input
+                required
+                type="password"
+                class="form-control border shadow text-light"
+                id="floatingPassword"
+                name="password"
+                placeholder="Password"
+                style="background-color: #fffdff31"
+              />
+              <label for="floatingPassword">كلمة المرور</label>
+            </div>
+          </div>
+
+          <button type="submit" class="col-lg-4 btn btn-primary py-2">
+            تسجيل دخول
+          </button>
+        </form>
+      </div>
+    </div>
+    <%- include('../partials/footer') %>
+  </body>
+</html>

@@ -1,0 +1,54 @@
+<div class="col-9">
+  <h2 class="pt-5 pb-5">
+    <% if (user.role === "admin") { %> الضباط وضباط الصف والجنود <% } else if
+    (user.role === "shon2_dobat") { %> الضباط <% } else if(user.role ===
+    "katebah") { %> ضباط الصف والجنود <%}%>
+  </h2>
+
+  <div class="card-body">
+    <div class="table-responsive text-nowrap">
+      <table
+        id="bootstrap-data-table"
+        class="table table-hover myTable text-center"
+      >
+        <thead>
+          <tr style="background-color: black; color: cornsilk">
+            <th>#</th>
+            <th>الأسم</th>
+            <th>الدرجه / الرتبه</th>
+            <th>الفرع</th>
+            <th>النوبتجيه</th>
+            <th>إعدادات</th>
+          </tr>
+        </thead>
+        <tbody id="mybody">
+          <% let off = 0 %> <% officer.forEach(el=>{ %>
+          <tr>
+            <td><%= ++off %></td>
+            <td><%= el.name %></td>
+            <td><%= el.rank %> / <%= el.sub_rank %></td>
+            <td><%= el.branchId["title"] %></td>
+            <td><%= el.shift_type %></td>
+            <td class="d-flex justify-content-center">
+              <a href="/view/<%= el.id %>" class="btn btn-info btn-sm mx-1"
+                >عرض</a
+              >
+              <a
+                href="/edit_person/<%= el.id %>/"
+                class="btn btn-success btn-sm mx-1"
+                >تعديل</a
+              >
+              <form
+                action="/delete_person/<%= el._id %>?_method=delete"
+                method="POST"
+              >
+                <button class="btn btn-danger btn-sm mx-1">حذف</button>
+              </form>
+            </td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

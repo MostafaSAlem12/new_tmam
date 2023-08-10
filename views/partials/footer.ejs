@@ -1,0 +1,132 @@
+<!-- <footer class="py-3 mt-auto text-center bg-dark">
+    <div class="container d-flex justify-content-center">
+        <span class="footer-animation mx-5 fs-5" style="color: #fdfd2b;" >  تم التنفيذ بواسطة فرع نظم المعلومات جهاز الإستطلاع </span>
+          <div class="ticker__item footer-animation"><img src="/images/sat3-logo.png" width="30px" height="30px"></div>
+
+    </div>
+</footer> -->
+
+
+ <div class="rt-container sticky-top " style="z-index: 9999;">
+    <div class="col-rt-12">
+      <div class="Scriptcontent">
+
+        <div class="ticker-wrap">
+          <div class="ticker">
+          <div class="ticker__item"><img src="/images/sat3-logo.png" width="25px" height="25px"></div>
+
+            <div class="ticker__item" style="color: #fdfd2b;">تم التنفيذ بواسطة فرع نظم المعلومات جهاز الإستطلاع في عهد السيد اللواء أ.ح / ياسر فتحي سليم </div>
+          <div class="ticker__item"><img src="/images/sat3-logo.png" width="25px" height="25px"></div>
+         
+
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+<script src="../../js/jquery.js"></script>
+<script src="/javascripts/jquery-3.3.1.min"></script>
+<script src="/javascripts/jquery-1.12.4.min"></script>
+
+
+
+<script>
+    const officer = [
+  "لواء أح",
+  "عميد أح",
+  "عميد",
+  "عقيد أح",
+  "عقيد",
+  "مقدم أح",
+  "مقدم",
+  "رائد أح",
+  "رائد",
+  "نقيب",
+  "ملازم أول",
+  "ملازم",
+];
+
+const sub_officer = ["مساعد أول", "مساعد", "رقيب أول", "رقيب" , "عريف"]
+
+const soldier = ["جندى"];
+const shift_officer = [
+  "تواجد",
+  "قائد منوب",
+  "ضابط منوب",
+  "ضابط نوبتجي"]
+
+ const shift_subOfficer =  ["مساعد ضابط نوبتجي",
+  "البوابه الرئيسيه ",
+  "البوابه الخلفيه",
+  "السجن",
+  "السلاح والذخيره"
+];
+const shift_soldier = ["يقف" , "لا يقف"];
+const rankTypes = ["ضابط", "ضابط صف", "جندي"];
+
+$(document).ready(function(){
+$("#sub_rank").html("")
+$("#sub_rank").append(`<option disabled selected>لا يوجد اختيار</option>`)
+ $("#rank").on("change" , function(){
+    if(this.value === "جندي"){
+       $("#shift_type").html("")
+      $.each(shift_soldier , function(key, value){
+        $("#shift_type").append(`<option value="${value}">${value}</option>`)
+      })
+      $("#sub_rank").html("")
+      $.each(soldier , function(key, value){
+          $("#sub_rank").append(`<option value="${value}">${value}</option>`)
+        })
+
+    }else if(this.value === "ضابط صف"){
+       $("#shift_type").html("")
+        $.each(shift_subOfficer , function(key, value){
+        $("#shift_type").append(`<option value="${value}">${value}</option>`)
+      })
+      $("#sub_rank").html("")
+        $.each(sub_officer , function(key, value){
+          $("#sub_rank").append(`<option value="${value}">${value}</option>`)
+      })
+    }else if(this.value === "ضابط"){
+       $("#shift_type").html("")
+        $.each(shift_officer , function(key, value){
+        $("#shift_type").append(`<option value="${value}">${value}</option>`)
+      })
+      $("#sub_rank").html("")
+        $.each(officer , function(key, value){
+          $("#sub_rank").append(`<option value="${value}">${value}</option>`)
+        })
+    }
+ })
+
+});
+
+   
+
+</script> 
+
+<script>
+  const btns_links = document.querySelectorAll(".nav-link");
+  const tbls = document.querySelectorAll(".myTable");
+
+  btns_links.forEach((btn) =>{
+     btn.addEventListener("click" , function(){ 
+       tbls.forEach(tbl =>{
+          tbl.id = ""
+        })
+     })
+  })
+</script>
+
+
+<script src="/javascripts/bootstrap.min.js"></script>
+<script src="/javascripts/bootstrap.bundle.min.js"></script>
+<script src="/javascripts/datatables.min.js"></script>
+<script src="/javascripts/dataTables.bootstrap.min.js"></script>
+<script src="/javascripts/dataTables.buttons.min.js"></script>
+<script src="/javascripts/datatables-init.js"></script>
+
+</body>
+
+</html>

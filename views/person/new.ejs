@@ -1,0 +1,113 @@
+<%- include('../partials/navabar') %>
+
+<div class="container mt-5">
+  <div class="position-absolute top-50 start-50 translate-middle">
+    <h1 class="text-center py-3">إضافة فرد جديد للجهاز</h1>
+    <!-- <div class="col-12 offset-3"> -->
+    <form
+      action="/new_person"
+      method="POST"
+      class="shadow p-3 needs-validation"
+    >
+      <div class="row">
+        <div class="col-12 mb-3">
+          <label class="form-label" for="name">الأسم:</label>
+          <input class="form-control" type="text" id="name" name="name" />
+        </div>
+
+        <div class="col-6 mb-3">
+          <label class="form-label" for="level">الدرجه/ الرتبه:</label>
+          <select
+            class="form-select"
+            aria-label="Default select example"
+            name="rank"
+            id="rank"
+          >
+            <option disabled selected>أختر التصنيف</option>
+
+            <% if (user.role === "katebah") { %>
+
+            <option value="ضابط صف">ضابط صف</option>
+            <option value="جندي">جندى</option>
+
+            <% }else if(user.role === "shon2_dobat") {%>
+
+            <option value="ضابط">ضابط</option>
+            <% } else if(user.role === "admin") { %>
+
+            <option value="ضابط">ضابط</option>
+            <option value="ضابط صف">ضابط صف</option>
+            <option value="جندي">جندى</option>
+
+            <% } %>
+          </select>
+        </div>
+        <div id="rank_list_div" class="col-6 mb-3">
+          <label class="form-label" for="sub_rank">النوع:</label>
+          <select
+            class="form-select"
+            aria-label="Default select example"
+            name="sub_rank"
+            id="sub_rank"
+          ></select>
+        </div>
+
+        <div class="col-12 mb-3">
+          <label class="form-label" for="mulutary_number">الرقم العسكري:</label>
+          <input
+            class="form-control"
+            type="number"
+            id="mulutary_number"
+            name="mulutary_number"
+          />
+        </div>
+
+        <div class="col-12 mb-3">
+          <label for="branch" class="form-label">أختر الفرع: </label>
+          <select
+            id="branch"
+            class="form-select"
+            name="branchId"
+            aria-label="Default select example"
+          >
+            <option selected disabled>اختر الفرع</option>
+            <% branches.forEach(branch => { %>
+            <option value="<%= branch.id %>"><%= branch.title %></option>
+
+            <% }) %>
+          </select>
+        </div>
+
+        <div class="col-12 mb-3">
+          <label for="shift_type" class="form-label">أختر النوبتجيه: </label>
+          <select
+            id="shift_type"
+            class="form-select"
+            name="shift_type"
+            aria-label="Default select example"
+          >
+            <option disabled selected>اختر النوبتجيه</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-between mb-3">
+        <button class="btn btn-success bi bi-person-fill-add">أضف</button>
+        <a
+          class="btn btn-outline-secondary bi bi-arrow-left-circle"
+          href="/dashboard"
+        >
+          عودة للخلف
+        </a>
+      </div>
+      <ol>
+        <% for( let index = 0; index < massages.length; index++ ) { %>
+        <li><%= massages[index] %></li>
+        <% } %>
+      </ol>
+    </form>
+    <!-- </div> -->
+  </div>
+</div>
+
+<%- include('../partials/footer') %>

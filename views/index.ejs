@@ -1,0 +1,316 @@
+<%- include('./partials/navabar') %>
+
+<div class="container mb-5">
+  <% if(user.role == "leader"){ %>
+
+    <h1> رئيس الجهاز </h2>
+
+  <% } else if(user.role === "katebah"){ %>
+      <div class="row d-flex justify-content-center">
+      <div class="col-6 my-5">
+        <input type="date" name="date" id="" class="form-control">
+      </div>
+      <div class="col-12">
+
+       <nav>
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+      <button
+        class="nav-link active"
+        id="nav-profile-tab"
+        data-bs-toggle="tab"
+        data-bs-target="#nav-profile"
+        type="button"
+        role="tab"
+        aria-controls="nav-profile"
+        aria-selected="false"
+      >
+        ضباط الصف
+      </button>
+      <button
+        class="nav-link"
+        id="nav-contact-tab"
+        data-bs-toggle="tab"
+        data-bs-target="#nav-contact"
+        type="button"
+        role="tab"
+        aria-controls="nav-contact"
+        aria-selected="false"
+      >
+        الجنود
+      </button>
+    </div>
+  </nav>
+
+  <div class="tab-content" id="nav-tabContent">
+    <div
+      class="tab-pane fade show active"
+      id="nav-profile"
+      role="tabpanel"
+      aria-labelledby="nav-profile-tab"
+      tabindex="0"
+    >
+      <div class="card-body">
+        <div class="table-responsive text-nowrap">
+          <table
+            id="bootstrap-data-table"
+            class="table table-hover myTable text-center"
+          >
+            <thead>
+              <tr style="background-color: black; color: cornsilk">
+                <th>#</th>
+                <th>الأسم</th>
+                <th>الدرجه / الرتبه</th>
+                <th>الفرع</th>
+                <th>النوبتجيه</th>
+                <th>إعدادات</th>
+              </tr>
+            </thead>
+            <tbody id="mybody">
+              <% let sub = 0 %> <% sub_officer.forEach(el=>{ %>
+              <tr>
+                <td><%= ++sub %></td>
+                <td><%= el.name %></td>
+                <td><%= el.rank %> / <%= el.sub_rank %></td>
+                <td><%= el.branchId["title"] %></td>
+                <td><%= el.shift_type %></td>
+                <td class="d-flex justify-content-center">
+                  <a
+                    href="/dashboard/view/<%= el.id %>"
+                    class="btn btn-info btn-sm mx-1"
+                    >عرض</a
+                  >
+                  <a
+                    href="/edit_person/<%= el.id %>/"
+                    class="btn btn-success btn-sm mx-1"
+                    >تعديل</a
+                  >
+                  <form
+                    action="/delete_person/<%= el._id %>?_method=delete"
+                    method="POST"
+                  >
+                    <button class="btn btn-danger btn-sm mx-1">حذف</button>
+                  </form>
+                </td>
+              </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div
+      class="tab-pane fade"
+      id="nav-contact"
+      role="tabpanel"
+      aria-labelledby="nav-contact-tab"
+      tabindex="0"
+    >
+      <div class="card-body">
+        <div class="table-responsive text-nowrap">
+          <table
+            id="bootstrap-data-table"
+            class="table table-hover myTable text-center"
+          >
+            <thead>
+              <tr style="background-color: black; color: cornsilk">
+                <th>#</th>
+                <th>الأسم</th>
+                <th>الدرجه / الرتبه</th>
+                <th>الفرع</th>
+                <th>النوبتجيه</th>
+                <th>إعدادات</th>
+              </tr>
+            </thead>
+            <tbody id="mybody">
+              <% let sold = 0 %> <% soldier.forEach(el=>{ %>
+              <tr>
+                <td><%= ++sold %></td>
+                <td><%= el.name %></td>
+                <td><%= el.rank %> / <%= el.sub_rank %></td>
+                <td><%= el.branchId["title"] %></td>
+                <td><%= el.shift_type %></td>
+                <td class="d-flex justify-content-center">
+                  <a
+                    href="/dashboard/view/<%= el.id %>"
+                    class="btn btn-info btn-sm mx-1"
+                    >عرض</a
+                  >
+                  <a
+                    href="/edit_person/<%= el.id %>/"
+                    class="btn btn-success btn-sm mx-1"
+                    >تعديل</a
+                  >
+                  <form
+                    action="/delete_person/<%= el._id %>?_method=delete"
+                    method="POST"
+                  >
+                    <button class="btn btn-danger btn-sm mx-1">حذف</button>
+                  </form>
+                </td>
+              </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+      </div>
+    </div>
+
+
+ <% } else if(user.role === "shon2_dobat"){ %>
+    
+    <div class="row d-flex justify-content-center">
+       
+    <nav class=" py-5 ">
+      <div class="nav nav-tabs shadow" id="nav-tab" role="tablist">
+        <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">تمام جديد ضباط</button>
+        <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">عرض تمام الضباط</button>
+        <button class="nav-link" id="nav-shift-tab" data-bs-toggle="tab" data-bs-target="#nav-shift" type="button" role="tab" aria-controls="nav-shift" aria-selected="false">نوبتجيه جديده</button>
+        <button class="nav-link" id="nav-AllShifts-tab" data-bs-toggle="tab" data-bs-target="#nav-AllShifts" type="button" role="tab" aria-controls="nav-AllShifts" aria-selected="false">عرض النوبتجيات</button>
+      </div>
+    </nav>
+  
+  <div class="tab-content" id="nav-tabContent">
+  
+  <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
+  
+  <div class="col-12  d-flex justify-content-center">
+        <h2 class="my-3 mb-5">تمام جديد ضباط</h2>
+      </div>
+      <form action="/new_tmam" method="POST">
+        <div class="col-12 d-flex justify-content-center">
+          <input type="date" name="date" class="form-control w-25 shadow mb-5" required>
+        </div>
+        <div class="col-12 shadow">
+          <div class="card-body">
+            <div class="table-responsive text-nowrap">
+              <table
+                id="bootstrap-data-table"
+                class="table table-hover mt-3 myTable text-center"
+              >
+                <thead>
+                  <tr style="background-color: black; color: cornsilk">
+                    <th>#</th>
+                    <th>الأسم</th>
+                    <th>الدرجه / الرتبه</th>
+                    <th>الفرع</th>
+                    <th>التمام</th>
+                    <th>إعدادات</th>
+                  </tr>
+                </thead>
+                  <tbody id="mybody">
+              <% let off = 0 %> <% officer.forEach(el=>{ %>
+              <tr >
+                <td><%= ++off %></td>
+                <td>
+                  <%= el.name %>
+                  <input name="person" type="text" value="<%= el.id %>" hidden/>
+                </td>
+                <td><%= el.rank %> / <%= el.sub_rank %></td>
+                <td><%= el.branchId["title"] %></td>
+                
+                <td>
+                  <select class="form-select " name="status">
+                    <% status.forEach(state => { %>
+                    <option <%= state === "حضور" ? "selected" : "" %> value="<%= state.id %>" > <%= state.title %> </option>
+                    <% }) %>
+                  </select>
+                </td>
+        
+                <td>
+                  <a
+                    href="/view/<%= el.id %>"
+                    class=" mx-1"
+                    >عرض</a
+                  >
+                  <!-- <a
+                    href="/edit_person/<%= el.id %>/"
+                    class="btn btn-success btn-sm mx-1"
+                    >تعديل</a
+                  >
+                  <form
+                    action="/delete_person/<%= el._id %>?_method=delete"
+                    method="POST"
+                  >
+                    <button class="btn btn-danger btn-sm mx-1">حذف</button>
+                  </form> -->
+                </td>
+              </tr>
+              <% }) %>
+            </tbody>
+              </table>
+            </div>
+          </div>
+        </div> 
+        <div class="col-12  d-flex justify-content-center">
+          <button class="btn btn-primary mt-5">سجل تمام</button>
+        </div>
+      </form>
+  
+
+  
+  </div>
+  
+  <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
+
+  <% if (userTmam.length > 0) { %>
+         <% userTmam.forEach(tmam => { %>
+     <div class="card">
+         <p class="card-header"> <%= tmam.date  %>تمام عن يوم </p>
+      <div class="cared-body">
+         <p class=""> <%= tmam.person  %> </p>
+      </div>
+    </div>
+   <% }) %>
+  <% } else{ %>
+    <h2 class="text-center">لا يوجد تمامات</h2>
+ <%  } %>
+  </div>
+
+
+
+   <div class="tab-pane fade" id="nav-shift" role="tabpanel" aria-labelledby="nav-shift-tab" tabindex="0">
+
+  <% if (userTmam.length > 0) { %>
+         <% userTmam.forEach(tmam => { %>
+     <div class="card">
+         <p class="card-header"> <%= tmam.date  %>نوبتجيه عن يوم </p>
+      <div class="cared-body">
+         <p class=""> <%= tmam.person  %> </p>
+      </div>
+    </div>
+   <% }) %>
+  <% } else{ %>
+    <h2 class="text-center">لا يوجد نوبتجيات</h2>
+ <%  } %>
+  </div>
+
+  
+   <div class="tab-pane fade" id="nav-AllShifts" role="tabpanel" aria-labelledby="nav-AllShifts-tab" tabindex="0">
+
+
+     <div class="card">
+         <p class="card-header"> النوبتجيات </p>
+      <div class="cared-body">
+         <p class=""> كل النوبتجيات</p>
+      </div>
+    </div>
+
+  </div>
+  
+  </div>
+
+    </div>
+    
+    
+    
+  <% } else if(user.role  === "admin"){ %>
+    <h1> <%= user.name%> </h2>
+
+
+  <%}%>
+</div>
+<%- include('./partials/footer') %>
