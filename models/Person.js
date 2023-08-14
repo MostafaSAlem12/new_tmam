@@ -41,6 +41,11 @@ const personSchema = new Schema(
       required: true,
       trim: true,
     },
+    status:{
+      type: Schema.Types.ObjectId,
+      ref: "status",
+      required:true
+    }
   },
   { timestamps: true }
 );

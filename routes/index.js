@@ -7,6 +7,8 @@ const Person = require("../models/Person");
 const Status = require("../models/status");
 const Tmam = require("../models/user_tmam");
 const mongoose = require("mongoose");
+const Shift = require("../models/Shift");
+moment.locale("ar");
 
 const isAuth = (req, res, next) => {
   if (!req.session.auth) {
@@ -214,6 +216,7 @@ router.get(
   asyncHandler(async (req, res, next) => {
     const user = req.session.user;
     const status = await Status.find({});
+    const shifts = await Shift.find({});
     let userTmam = await Tmam.find({})
       .populate("person", "name")
       .populate("status", "title");
@@ -247,6 +250,8 @@ router.get(
         soldier,
         status,
         userTmam,
+        shifts,
+        moment,
       });
     }
     if (user.role === "shon2_dobat") {
@@ -259,6 +264,8 @@ router.get(
         officer,
         status,
         userTmam,
+        shifts,
+        moment,
       });
     }
     if (user.role === "admin") {
@@ -279,6 +286,8 @@ router.get(
         soldier,
         status,
         userTmam,
+        shifts,
+        moment,
       });
     }
   })
@@ -289,16 +298,36 @@ router.post(
   "/new_tmam",
   isAuth,
   asyncHandler(async (req, res, next) => {
-    const { date, person, status, details } = req.body;
+    const { date, person, status, details ,Shift } = req.body;
 
     // Create a new instance of Tmam model
     const tmam = new Tmam({
       date,
       person,
       status,
+      Shift,
       details,
     });
-    tmam.save();
+    await tmam.save();
+    res.redirect("/");
+  })
+);
+
+/// new shifts
+router.post(
+  "/new_shift",
+  isAuth,
+  asyncHandler(async (req, res, next) => {
+    const { date, person, shiftType, details } = req.body;
+
+    // Create a new instance of Tmam model
+    const shift = new Shift({
+      date,
+      person,
+      shiftType,
+      details,
+    });
+    await shift.save();
     res.redirect("/");
   })
 );

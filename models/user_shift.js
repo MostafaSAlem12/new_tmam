@@ -21,4 +21,4 @@ const ShiftSchema = mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Shift", ShiftSchema);
+module.exports = mongoose.model("user_shift", ShiftSchema);

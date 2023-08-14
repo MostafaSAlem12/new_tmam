@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const ShiftSchema = mongoose.Schema({
+const ShiftsSchema = mongoose.Schema({
   title: {
     type: String,
     required: true,
@@ -8,7 +8,7 @@ const ShiftSchema = mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("Shift", ShiftSchema);
+module.exports = mongoose.model("Shift", ShiftsSchema);
 //  [
 //       "قائد منوب",
 //       "ضابط منوب",
